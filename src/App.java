@@ -1,91 +1,238 @@
 
 import javafx.application.Application;
+import javafx.beans.property.ObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.scene.control.ScrollPane;
 
+import java.awt.*;
 import java.util.Random;
 
 public class App extends Application {
+
+
+    private TextField inputParamN;
+    private TextField inputParamX;
+    private TextField inputParamY;
+    private Button createGrid;
+    private Button solveProblem;
+    private Button resetProblem;
+    private CheckBox showStep;
+    private CheckBox drawGrid;
+
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage stage) {
-        stage.setTitle("Hello World!");
+        stage.setTitle("Puzzle");
 
         VBox rootPane = new VBox();
+        rootPane.setPadding(new Insets(10));
+        rootPane.setSpacing(8);
 
-        GridPane g = addGrid(10);
-        GridPane c = addControls();
 
-        rootPane.getChildren().addAll(g,c);
+        GridPane gridPane = addGrid(32);
 
-        Scene scene = new Scene(rootPane, 1000, 1000);
+        GridPane controlPanel = addControls();
+        rootPane.getChildren().addAll(gridPane, controlPanel);
+        rootPane.autosize();
 
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        Scene scene = new Scene(rootPane, screenBounds.getHeight() - screenBounds.getHeight() * 0.25, screenBounds.getHeight() - screenBounds.getHeight() * 0.25);
         stage.setScene(scene);
+
         stage.show();
+
+        this.setupActionListeners();
     }
 
     private GridPane addControls() {
         GridPane controls = new GridPane();
-        Label label1 = new Label("N: ");
-        Label label2 = new Label("X: ");
-        Label label3 = new Label("Y: ");
-        TextField tf1 = new TextField();
-        TextField tf2 = new TextField();
-        TextField tf3 = new TextField();
+        Insets controlInsets = new Insets(5, 12, 5, 12);
 
+        //region param inputs setup
+        Label labelParamN = new Label("N: ");
+        Label labelParamX = new Label("X: ");
+        Label labelParamY = new Label("Y: ");
 
-        controls.setConstraints(label1, 0, 0);
-        controls.setConstraints(tf1, 1, 0);
+        inputParamN = new TextField();
+        inputParamX = new TextField();
+        inputParamY = new TextField();
 
-        controls.setConstraints(label2, 0, 1);
-        controls.setConstraints(tf2, 1, 1);
+        HBox containerN = new HBox();
+        containerN.getChildren().addAll(labelParamN, inputParamN);
+        containerN.setPadding(controlInsets);
+        containerN.setSpacing(10);
+        containerN.setAlignment(Pos.CENTER);
 
-        controls.setConstraints(label3, 0, 2);
-        controls.setConstraints(tf3, 1, 2);
+        HBox containerY = new HBox();
+        containerY.getChildren().addAll(labelParamY, inputParamY);
+        containerY.setPadding(controlInsets);
+        containerY.setSpacing(10);
+        containerY.setAlignment(Pos.CENTER);
 
-        controls.getChildren().addAll(label1, tf1, label2, tf2, label3, tf3);
+        HBox containerX = new HBox();
+        containerX.getChildren().addAll(labelParamX, inputParamX);
+        containerX.setPadding(controlInsets);
+        containerX.setSpacing(10);
+        containerX.setAlignment(Pos.CENTER);
+
+        VBox controlContainer = new VBox(containerN, containerX, containerY);
+        controlContainer.setAlignment(Pos.CENTER);
+        controlContainer.setStyle("-fx-padding: 10;" +
+                "-fx-border-style: solid inside;" +
+                "-fx-border-width: 2;" +
+                "-fx-border-insets: 5;" +
+                "-fx-border-radius: 5;" +
+                "-fx-border-color: gray;");
+
+        int buttonPrefSize = 200;
+
+        createGrid = new Button("Créer une nouvelle grille");
+        createGrid.setPadding(controlInsets);
+        createGrid.setPrefWidth(buttonPrefSize);
+        controlContainer.getChildren().add(createGrid);
+        //endregion
+
+        solveProblem = new Button("Résoudre");
+        solveProblem.setPadding(controlInsets);
+        solveProblem.setPrefWidth(buttonPrefSize);
+        resetProblem = new Button("Reset");
+        resetProblem.setPadding(controlInsets);
+        resetProblem.setPrefWidth(buttonPrefSize);
+
+        showStep = new CheckBox("Montrer les étapes");
+        showStep.setPadding(controlInsets);
+        showStep.setPrefWidth(buttonPrefSize);
+        drawGrid = new CheckBox("Dessiner la grille");
+        drawGrid.setPadding(controlInsets);
+        drawGrid.setPrefWidth(buttonPrefSize);
+
+        VBox actionContainer = new VBox(solveProblem, resetProblem, showStep, drawGrid);
+        actionContainer.setSpacing(10);
+        actionContainer.setAlignment(Pos.CENTER);
+        actionContainer.setStyle("-fx-padding: 10;" +
+                "-fx-border-style: solid inside;" +
+                "-fx-border-width: 2;" +
+                "-fx-border-insets: 5;" +
+                "-fx-border-radius: 5;" +
+                "-fx-border-color: gray;");
+
+        controls.getChildren().addAll(controlContainer, actionContainer);
+
+        ColumnConstraints column1 = new ColumnConstraints();
+        column1.setPercentWidth(50);
+        ColumnConstraints column2 = new ColumnConstraints();
+        column2.setPercentWidth(50);
+        controls.getColumnConstraints().addAll(column1, column2);
+
+        GridPane.setConstraints(controlContainer, 0, 0);
+        GridPane.setConstraints(actionContainer, 1, 0);
 
         return controls;
     }
 
-    public GridPane addGrid(int n) {
+    private GridPane addGrid(int n) {
         int SIZE = n;
         int length = SIZE;
         int width = SIZE;
 
         GridPane root = new GridPane();
 
-        for(int y = 0; y < length; y++){
-            for(int x = 0; x < width; x++){
+
+        for (int y = 0; y < length; y++) {
+            for (int x = 0; x < width; x++) {
 
                 Random rand = new Random();
                 int rand1 = rand.nextInt(2);
 
                 // Create a new TextField in each Iteration
                 TextField tf = new TextField();
-                tf.setPrefHeight(50);
-                tf.setPrefWidth(50);
+               /* tf.setPrefHeight(50);
+                tf.setPrefWidth(50);*/
+               tf.setMinSize(5,5);
                 tf.setAlignment(Pos.CENTER);
                 tf.setEditable(false);
-                tf.setText("(" + rand1 + ")");
 
                 // Iterate the Index using the loops
-                root.setRowIndex(tf,y);
-                root.setColumnIndex(tf,x);
+                root.setRowIndex(tf, y);
+                root.setColumnIndex(tf, x);
                 root.getChildren().add(tf);
             }
         }
         return root;
     }
+
+    private void setupActionListeners(){
+
+        createGrid.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                event.consume();
+                //TODO créer nouvelle grille
+                int n, x, y;
+                try{
+                    n = Integer.valueOf(inputParamN.getCharacters().toString());
+                    x = Integer.valueOf(inputParamX.getCharacters().toString());
+                    y = Integer.valueOf(inputParamY.getCharacters().toString());
+
+                }catch(Exception e){
+                    //TODO Handle
+                }
+
+            }
+        });
+
+        resetProblem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                event.consume();
+
+                //TODO reset la grille
+            }
+        });
+
+        solveProblem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                event.consume();
+
+                //TODO : afficher résolution problème
+            }
+        });
+
+        drawGrid.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                event.consume();
+
+                //TODO dessiner/masquer grille
+            }
+        });
+
+        showStep.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                event.consume();
+
+                //TODO : show steps or not mode
+            }
+        });
+    }
+
+
 }
