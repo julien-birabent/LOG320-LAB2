@@ -1,8 +1,10 @@
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -15,11 +17,15 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Random;
 
-public class UserInterface {
+public class UserInterface implements Observer{
 
     private Stage mStage;
+    private Controller mController;
 
     private TextField inputParamN;
     private TextField inputParamX;
@@ -29,10 +35,29 @@ public class UserInterface {
     private Button resetProblem;
     private CheckBox showStep;
     private CheckBox drawGrid;
+    private GridPane gridPane;
 
-    public UserInterface(Stage mStage) {
+    public UserInterface(Stage mStage, Controller controller) {
         this.mStage = mStage;
         init();
+        this.mStage.show();
+        this.mController = controller;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if(o instanceof ProblemParameters){
+            System.out.println("Les parametres de la grille doivent être mis à jour.");
+
+            if(drawGrid.isSelected()){
+                gridPane.getChildren().clear();
+                fillGrid(ProblemParameters.getInstance().getParamN(),gridPane);
+                setEmptyTile(ProblemParameters.getInstance().getEmptyTilePosition());
+                gridPane.setVisible(true);
+            }else{
+                gridPane.setVisible(false);
+            }
+        }
     }
 
     private void init() {
@@ -42,8 +67,8 @@ public class UserInterface {
         rootPane.setPadding(new Insets(10));
         rootPane.setSpacing(8);
 
-
-        GridPane gridPane = addGrid(32);
+        gridPane = new GridPane();
+        fillGrid(5, gridPane);
 
         GridPane controlPanel = addControls();
         rootPane.getChildren().addAll(gridPane, controlPanel);
@@ -52,8 +77,6 @@ public class UserInterface {
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         Scene scene = new Scene(rootPane, screenBounds.getHeight() - screenBounds.getHeight() * 0.25, screenBounds.getHeight() - screenBounds.getHeight() * 0.25);
         mStage.setScene(scene);
-
-        mStage.show();
 
         this.setupActionListeners();
     }
@@ -144,13 +167,14 @@ public class UserInterface {
         return controls;
     }
 
-    private GridPane addGrid(int n) {
-        int SIZE = n;
-        int length = SIZE;
-        int width = SIZE;
+    private void fillGrid(int n , GridPane gridPane){
 
-        GridPane root = new GridPane();
+        int length = (int) Math.pow(2,n);
+        int width = (int)Math.pow(2,n);
 
+        if(!gridPane.getChildren().isEmpty()){
+            gridPane.getChildren().clear();
+        }
 
         for (int y = 0; y < length; y++) {
             for (int x = 0; x < width; x++) {
@@ -162,17 +186,18 @@ public class UserInterface {
                 TextField tf = new TextField();
                /* tf.setPrefHeight(50);
                 tf.setPrefWidth(50);*/
+                tf.setMaxHeight(50);
+                tf.setMaxWidth(50);
                 tf.setMinSize(5, 5);
                 tf.setAlignment(Pos.CENTER);
                 tf.setEditable(false);
 
                 // Iterate the Index using the loops
-                root.setRowIndex(tf, y);
-                root.setColumnIndex(tf, x);
-                root.getChildren().add(tf);
+                gridPane.setRowIndex(tf, y);
+                gridPane.setColumnIndex(tf, x);
+                gridPane.getChildren().add(tf);
             }
         }
-        return root;
     }
 
     private void setupActionListeners() {
@@ -187,11 +212,10 @@ public class UserInterface {
                     n = Integer.valueOf(inputParamN.getCharacters().toString());
                     x = Integer.valueOf(inputParamX.getCharacters().toString());
                     y = Integer.valueOf(inputParamY.getCharacters().toString());
-
+                    mController.makeNewGrid(n, new Point(x,y));
                 } catch (Exception e) {
                     //TODO Handle
                 }
-
             }
         });
 
@@ -199,7 +223,9 @@ public class UserInterface {
             @Override
             public void handle(ActionEvent event) {
                 event.consume();
-
+                for (Node node : gridPane.getChildren()){
+                    node.setStyle("-fx-background-color: white");
+                }
                 //TODO reset la grille
             }
         });
@@ -208,7 +234,7 @@ public class UserInterface {
             @Override
             public void handle(ActionEvent event) {
                 event.consume();
-
+                mController.resolveProblem();
                 //TODO : afficher résolution problème
             }
         });
@@ -217,7 +243,9 @@ public class UserInterface {
             @Override
             public void handle(ActionEvent event) {
                 event.consume();
-
+                if(drawGrid.isSelected()){
+                    gridPane.setVisible(true);
+                }else gridPane.setVisible(false);
                 //TODO dessiner/masquer grille
             }
         });
@@ -230,6 +258,26 @@ public class UserInterface {
                 //TODO : show steps or not mode
             }
         });
+    }
+
+    private void setEmptyTile(Point coord){
+        Node emptyTile = getNodeByRowColumnIndex(coord.x,coord.y,gridPane);
+        emptyTile.setStyle("-fx-background-color: gray");
+    }
+
+
+    public Node getNodeByRowColumnIndex (final int row, final int column, GridPane gridPane) {
+        Node result = null;
+        ObservableList<Node> childrens = gridPane.getChildren();
+
+        for (Node node : childrens) {
+            if(gridPane.getRowIndex(node) == row && gridPane.getColumnIndex(node) == column) {
+                result = node;
+                break;
+            }
+        }
+
+        return result;
     }
 
 
