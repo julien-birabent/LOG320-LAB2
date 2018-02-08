@@ -18,6 +18,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
@@ -234,8 +235,19 @@ public class UserInterface implements Observer{
             @Override
             public void handle(ActionEvent event) {
                 event.consume();
-                mController.resolveProblem();
-                //TODO : afficher résolution problème
+                int colorIndex = 0;
+                String[] colorArray = new String[]{"cyan", "dodgerblue", "lightseagreen", "moccasin", "orchid", "crimson", "orangered"};
+                ArrayList<Triplet> results = mController.resolveProblem();
+                // display results
+                for (Triplet t : results) {
+                    System.out.println("Triplet at: " + t.getFirst() + " " + t.getSecond() + " " + t.getThird());
+                    if(colorIndex == colorArray.length) colorIndex = 0;
+                    getNodeByRowColumnIndex(t.getFirst().y, t.getFirst().x,gridPane).setStyle("-fx-background-color: "+ colorArray[colorIndex]);
+                    getNodeByRowColumnIndex(t.getSecond().y, t.getSecond().x,gridPane).setStyle("-fx-background-color: "+ colorArray[colorIndex]);
+                    getNodeByRowColumnIndex(t.getThird().y, t.getThird().x,gridPane).setStyle("-fx-background-color: "+ colorArray[colorIndex]);
+
+                    colorIndex++;
+                }
             }
         });
 
@@ -261,7 +273,7 @@ public class UserInterface implements Observer{
     }
 
     private void setEmptyTile(Point coord){
-        Node emptyTile = getNodeByRowColumnIndex(coord.x,coord.y,gridPane);
+        Node emptyTile = getNodeByRowColumnIndex(coord.y,coord.x,gridPane);
         emptyTile.setStyle("-fx-background-color: gray");
     }
 

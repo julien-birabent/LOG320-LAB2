@@ -1,24 +1,28 @@
+import java.awt.*;
+
 public class Triplet<A> {
 
-    private A first;
-    private A second;
-    private A third;
+    private Point first;
+    private Point second;
+    private Point third;
 
-    public Triplet(A first, A second, A third) {
+    public Triplet(Point first, Point second, Point third) {
         this.first = first;
         this.second = second;
         this.third = third;
+        System.out.println("new Triplet at: " + first + " " + second + " " + third);
+
     }
 
-    public A getFirst() {
+    public Point getFirst() {
         return first;
     }
 
-    public A getSecond() {
+    public Point getSecond() {
         return second;
     }
 
-    public A getThird() {
+    public Point getThird() {
         return third;
     }
 }
