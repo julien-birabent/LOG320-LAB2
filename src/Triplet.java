@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Triplet<A> {
+public class Triplet{
 
     private Point first;
     private Point second;
@@ -12,6 +12,9 @@ public class Triplet<A> {
         this.third = third;
         System.out.println("new Triplet at: " + first + " " + second + " " + third);
 
+    }
+
+    public Triplet() {
     }
 
     public Point getFirst() {
