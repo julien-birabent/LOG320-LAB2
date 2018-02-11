@@ -26,7 +26,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class UserInterface implements Observer{
+public class UserInterface implements Observer {
 
     private Stage mStage;
     private Controller mController;
@@ -50,18 +50,19 @@ public class UserInterface implements Observer{
 
     @Override
     public void update(Observable o, Object arg) {
-        if(o instanceof ProblemParameters){
-            if(drawGrid.isSelected()){
+        if (o instanceof ProblemParameters) {
+            if (drawGrid.isSelected()) {
                 gridPane.getChildren().clear();
-                fillGrid(ProblemParameters.getInstance().getParamN(),gridPane);
+                fillGrid(ProblemParameters.getInstance().getParamN(), gridPane);
                 setEmptyTile(ProblemParameters.getInstance().getEmptyTilePosition());
                 gridPane.setVisible(true);
-            }else{
+            } else {
                 gridPane.setVisible(false);
             }
         }
     }
 
+    //region UI building
     private void init() {
         mStage.setTitle("Puzzle");
 
@@ -170,12 +171,12 @@ public class UserInterface implements Observer{
         return controls;
     }
 
-    private void fillGrid(int n , GridPane gridPane){
+    private void fillGrid(int n, GridPane gridPane) {
 
-        int length = (int) Math.pow(2,n);
-        int width = (int)Math.pow(2,n);
+        int length = (int) Math.pow(2, n);
+        int width = (int) Math.pow(2, n);
 
-        if(!gridPane.getChildren().isEmpty()){
+        if (!gridPane.getChildren().isEmpty()) {
             gridPane.getChildren().clear();
         }
 
@@ -202,7 +203,9 @@ public class UserInterface implements Observer{
             }
         }
     }
+    //endregion
 
+    //region UI Action
     private void setupActionListeners() {
 
         createGrid.setOnAction(new EventHandler<ActionEvent>() {
@@ -215,7 +218,7 @@ public class UserInterface implements Observer{
                     n = Integer.valueOf(inputParamN.getCharacters().toString());
                     x = Integer.valueOf(inputParamX.getCharacters().toString());
                     y = Integer.valueOf(inputParamY.getCharacters().toString());
-                    mController.makeNewGrid(n, new Point(x,y));
+                    mController.makeNewGrid(n, new Point(x, y));
                 } catch (Exception e) {
                     //TODO Handle
                 }
@@ -226,8 +229,8 @@ public class UserInterface implements Observer{
             @Override
             public void handle(ActionEvent event) {
                 event.consume();
-                for (Node node : gridPane.getChildren()){
-                    node.setStyle("-fx-background-color: white");
+                for (Node node : gridPane.getChildren()) {
+                    node.setStyle("-fx-background-color: default");
                 }
                 //TODO reset la grille
             }
@@ -238,19 +241,21 @@ public class UserInterface implements Observer{
             public void handle(ActionEvent event) {
                 event.consume();
                 ArrayList<Triplet> results = mController.resolveProblem();
+
                 Index indexTriplet = new Index(0);
                 Index indexColor = new Index(0);
-                if(showStep.isSelected()){
+                if (showStep.isSelected()) {
                     final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
                     executorService.scheduleAtFixedRate(new Runnable() {
                         @Override
                         public void run() {
-                            colorize(results.get(indexTriplet.getIndex()),indexColor.getIndex());
+                            colorize(results.get(indexTriplet.getIndex()), indexColor.getIndex());
                             indexTriplet.increment();
                             indexColor.increment();
                         }
                     }, 0, 1, TimeUnit.SECONDS);
-                }else colorizeAll(results);
+                } else colorizeAll(results);
+                colorizeEmptytile();
             }
         });
 
@@ -258,9 +263,9 @@ public class UserInterface implements Observer{
             @Override
             public void handle(ActionEvent event) {
                 event.consume();
-                if(drawGrid.isSelected()){
+                if (drawGrid.isSelected()) {
                     gridPane.setVisible(true);
-                }else gridPane.setVisible(false);
+                } else gridPane.setVisible(false);
                 //TODO dessiner/masquer grille
             }
         });
@@ -275,43 +280,51 @@ public class UserInterface implements Observer{
         });
     }
 
-    private void colorizeAll(ArrayList<Triplet> results){
+    private void colorizeAll(ArrayList<Triplet> results) {
+
 
         int colorIndex = 0;
         String[] colorArray = new String[]{"cyan", "dodgerblue", "lightseagreen", "moccasin", "orchid", "crimson", "orangered"};
         for (Triplet t : results) {
-            if(colorIndex == colorArray.length) colorIndex = 0;
-            if(t!=null){
-
-                getNodeByRowColumnIndex(t.getFirst().x, t.getFirst().y,gridPane).setStyle("-fx-background-color: "+ colorArray[colorIndex]);
-                getNodeByRowColumnIndex(t.getSecond().x, t.getSecond().y,gridPane).setStyle("-fx-background-color: "+ colorArray[colorIndex]);
-                getNodeByRowColumnIndex(t.getThird().x, t.getThird().y,gridPane).setStyle("-fx-background-color: "+ colorArray[colorIndex]);
+            if (colorIndex == colorArray.length) colorIndex = 0;
+            if (t != null) {
+                getNodeByRowColumnIndex(t.getFirst().x, t.getFirst().y, gridPane).setStyle("-fx-background-color: " + colorArray[colorIndex]);
+                getNodeByRowColumnIndex(t.getSecond().x, t.getSecond().y, gridPane).setStyle("-fx-background-color: " + colorArray[colorIndex]);
+                getNodeByRowColumnIndex(t.getThird().x, t.getThird().y, gridPane).setStyle("-fx-background-color: " + colorArray[colorIndex]);
+                colorIndex++;
             }
-            colorIndex++;
+
         }
     }
 
-    private void colorize(Triplet t, int colorIndex){
+    private void setEmptyTile(Point coord) {
+        Node emptyTile = getNodeByRowColumnIndex(coord.x, coord.y, gridPane);
+        emptyTile.setStyle("-fx-background-color: black");
+    }
+
+    public void colorizeEmptytile() {
+        Point emptyPosition = ProblemParameters.getInstance().getEmptyTilePosition();
+        Node emptyTile = getNodeByRowColumnIndex(emptyPosition.x, emptyPosition.y, gridPane);
+        emptyTile.setStyle("-fx-background-color: black");
+    }
+
+    private void colorize(Triplet t, int colorIndex) {
         String[] colorArray = new String[]{"cyan", "dodgerblue", "lightseagreen", "moccasin", "orchid", "crimson", "orangered"};
-        if(colorIndex == colorArray.length) colorIndex = 0;
-        getNodeByRowColumnIndex(t.getFirst().x, t.getFirst().y,gridPane).setStyle("-fx-background-color: "+ colorArray[colorIndex]);
-        getNodeByRowColumnIndex(t.getSecond().x, t.getSecond().y,gridPane).setStyle("-fx-background-color: "+ colorArray[colorIndex]);
-        getNodeByRowColumnIndex(t.getThird().x, t.getThird().y,gridPane).setStyle("-fx-background-color: "+ colorArray[colorIndex]);
+        if (colorIndex == colorArray.length) colorIndex = 0;
+        getNodeByRowColumnIndex(t.getFirst().x, t.getFirst().y, gridPane).setStyle("-fx-background-color: " + colorArray[colorIndex]);
+        getNodeByRowColumnIndex(t.getSecond().x, t.getSecond().y, gridPane).setStyle("-fx-background-color: " + colorArray[colorIndex]);
+        getNodeByRowColumnIndex(t.getThird().x, t.getThird().y, gridPane).setStyle("-fx-background-color: " + colorArray[colorIndex]);
     }
+    //endregion
 
 
-    private void setEmptyTile(Point coord){
-        Node emptyTile = getNodeByRowColumnIndex(coord.x,coord.y,gridPane);
-        emptyTile.setStyle("-fx-background-color: gray");
-    }
-
-
-    public Node getNodeByRowColumnIndex (final int row, final int column, GridPane gridPane) {
+    //region Utility
+    public Node getNodeByRowColumnIndex(final int row, final int column, GridPane gridPane) {
         Node result = null;
         ObservableList<Node> childrens = gridPane.getChildren();
 
         for (Node node : childrens) {
-            if(gridPane.getRowIndex(node) == row && gridPane.getColumnIndex(node) == column) {
+            if (gridPane.getRowIndex(node) == row && gridPane.getColumnIndex(node) == column) {
                 result = node;
                 break;
             }
@@ -319,6 +332,7 @@ public class UserInterface implements Observer{
 
         return result;
     }
+    //endregion
 
 
 }
