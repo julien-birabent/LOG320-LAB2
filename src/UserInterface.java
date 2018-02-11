@@ -22,6 +22,9 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class UserInterface implements Observer{
 
@@ -48,8 +51,6 @@ public class UserInterface implements Observer{
     @Override
     public void update(Observable o, Object arg) {
         if(o instanceof ProblemParameters){
-            System.out.println("Les parametres de la grille doivent être mis à jour.");
-
             if(drawGrid.isSelected()){
                 gridPane.getChildren().clear();
                 fillGrid(ProblemParameters.getInstance().getParamN(),gridPane);
@@ -142,6 +143,7 @@ public class UserInterface implements Observer{
         showStep.setPrefWidth(buttonPrefSize);
         drawGrid = new CheckBox("Dessiner la grille");
         drawGrid.setPadding(controlInsets);
+        drawGrid.setSelected(true);
         drawGrid.setPrefWidth(buttonPrefSize);
 
         VBox actionContainer = new VBox(solveProblem, resetProblem, showStep, drawGrid);
@@ -235,19 +237,20 @@ public class UserInterface implements Observer{
             @Override
             public void handle(ActionEvent event) {
                 event.consume();
-                int colorIndex = 0;
-                String[] colorArray = new String[]{"cyan", "dodgerblue", "lightseagreen", "moccasin", "orchid", "crimson", "orangered"};
                 ArrayList<Triplet> results = mController.resolveProblem();
-                // display results
-                for (Triplet t : results) {
-                    System.out.println("Triplet at: " + t.getFirst() + " " + t.getSecond() + " " + t.getThird());
-                    if(colorIndex == colorArray.length) colorIndex = 0;
-                    getNodeByRowColumnIndex(t.getFirst().y, t.getFirst().x,gridPane).setStyle("-fx-background-color: "+ colorArray[colorIndex]);
-                    getNodeByRowColumnIndex(t.getSecond().y, t.getSecond().x,gridPane).setStyle("-fx-background-color: "+ colorArray[colorIndex]);
-                    getNodeByRowColumnIndex(t.getThird().y, t.getThird().x,gridPane).setStyle("-fx-background-color: "+ colorArray[colorIndex]);
-
-                    colorIndex++;
-                }
+                Index indexTriplet = new Index(0);
+                Index indexColor = new Index(0);
+                if(showStep.isSelected()){
+                    final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+                    executorService.scheduleAtFixedRate(new Runnable() {
+                        @Override
+                        public void run() {
+                            colorize(results.get(indexTriplet.getIndex()),indexColor.getIndex());
+                            indexTriplet.increment();
+                            indexColor.increment();
+                        }
+                    }, 0, 1, TimeUnit.SECONDS);
+                }else colorizeAll(results);
             }
         });
 
@@ -272,8 +275,33 @@ public class UserInterface implements Observer{
         });
     }
 
+    private void colorizeAll(ArrayList<Triplet> results){
+
+        int colorIndex = 0;
+        String[] colorArray = new String[]{"cyan", "dodgerblue", "lightseagreen", "moccasin", "orchid", "crimson", "orangered"};
+        for (Triplet t : results) {
+            if(colorIndex == colorArray.length) colorIndex = 0;
+            if(t!=null){
+
+                getNodeByRowColumnIndex(t.getFirst().x, t.getFirst().y,gridPane).setStyle("-fx-background-color: "+ colorArray[colorIndex]);
+                getNodeByRowColumnIndex(t.getSecond().x, t.getSecond().y,gridPane).setStyle("-fx-background-color: "+ colorArray[colorIndex]);
+                getNodeByRowColumnIndex(t.getThird().x, t.getThird().y,gridPane).setStyle("-fx-background-color: "+ colorArray[colorIndex]);
+            }
+            colorIndex++;
+        }
+    }
+
+    private void colorize(Triplet t, int colorIndex){
+        String[] colorArray = new String[]{"cyan", "dodgerblue", "lightseagreen", "moccasin", "orchid", "crimson", "orangered"};
+        if(colorIndex == colorArray.length) colorIndex = 0;
+        getNodeByRowColumnIndex(t.getFirst().x, t.getFirst().y,gridPane).setStyle("-fx-background-color: "+ colorArray[colorIndex]);
+        getNodeByRowColumnIndex(t.getSecond().x, t.getSecond().y,gridPane).setStyle("-fx-background-color: "+ colorArray[colorIndex]);
+        getNodeByRowColumnIndex(t.getThird().x, t.getThird().y,gridPane).setStyle("-fx-background-color: "+ colorArray[colorIndex]);
+    }
+
+
     private void setEmptyTile(Point coord){
-        Node emptyTile = getNodeByRowColumnIndex(coord.y,coord.x,gridPane);
+        Node emptyTile = getNodeByRowColumnIndex(coord.x,coord.y,gridPane);
         emptyTile.setStyle("-fx-background-color: gray");
     }
 

@@ -15,6 +15,9 @@ public class Triplet{
     }
 
     public Triplet() {
+        this.first = new Point();
+        this.second = new Point();
+        this.third = new Point();
     }
 
     public Point getFirst() {

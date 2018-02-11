@@ -10,26 +10,32 @@ public class Controller {
     }
 
     public void makeNewGrid(int n, Point emptyTile){
-        //ProblemParameters.getInstance().setParamN(n);
-       // ProblemParameters.getInstance().setEmptyTilePosition(emptyTile);
+        ProblemParameters.getInstance().setParamN(n);
+        ProblemParameters.getInstance().setEmptyTilePosition(emptyTile);
 
     }
 
     public ArrayList<Triplet> resolveProblem(){
 
-        //Grid completeGrid = new Grid(new Point(0,0),ProblemParameters.getInstance().getParamN());
+        int initialGridDepth = ProblemParameters.getInstance().getParamN();
+        int initialGridLength = (int)Math.pow(2,initialGridDepth);
 
+        Grid completeGrid = new Grid(new Point(0,0),initialGridDepth);
+        Grid.initProblem(ProblemParameters.getInstance().getEmptyTilePosition(),completeGrid);
+        divideAndConquer(completeGrid);
 
-
-        return null;
+        return tripletList;
     }
 
     public void divideAndConquer(Grid grid){
 
-       // if(grid.getGridDepht()==)
-        grid.divide();
-        tripletList.add(grid.placePiece());
-
+        if (grid.getGridDepth() == 0) {
+            return;
+        }else{
+            tripletList.add(grid.solve());
+            for(Grid subGrid : grid.getSubGrids()){
+                divideAndConquer(subGrid);
+            }
+        }
     }
-
 }
