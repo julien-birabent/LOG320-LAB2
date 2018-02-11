@@ -242,20 +242,10 @@ public class UserInterface implements Observer {
                 event.consume();
                 ArrayList<Triplet> results = mController.resolveProblem();
 
-                Index indexTriplet = new Index(0);
-                Index indexColor = new Index(0);
-                if (showStep.isSelected()) {
-                    final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-                    executorService.scheduleAtFixedRate(new Runnable() {
-                        @Override
-                        public void run() {
-                            colorize(results.get(indexTriplet.getIndex()), indexColor.getIndex());
-                            indexTriplet.increment();
-                            indexColor.increment();
-                        }
-                    }, 0, 1, TimeUnit.SECONDS);
-                } else colorizeAll(results);
-                colorizeEmptytile();
+                if(drawGrid.isSelected()){
+                    colorizeAll(results);
+                    colorizeEmptytile();
+                }
             }
         });
 
@@ -281,8 +271,6 @@ public class UserInterface implements Observer {
     }
 
     private void colorizeAll(ArrayList<Triplet> results) {
-
-
         int colorIndex = 0;
         String[] colorArray = new String[]{"cyan", "dodgerblue", "lightseagreen", "moccasin", "orchid", "crimson", "orangered"};
         for (Triplet t : results) {

@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23f01549-84fe-406c-955c-00554c6c6a56" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/StopWatch.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/LOG320-LAB2.iml" afterPath="$PROJECT_DIR$/LOG320-LAB2.iml" />
-      <change beforePath="$PROJECT_DIR$/out/production/LOG320-LAB2/App.class" afterPath="$PROJECT_DIR$/out/production/LOG320-LAB2/App.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/GridWorker.java" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change beforePath="$PROJECT_DIR$/src/Controller.java" afterPath="$PROJECT_DIR$/src/Controller.java" />
       <change beforePath="$PROJECT_DIR$/src/Grid.java" afterPath="$PROJECT_DIR$/src/Grid.java" />
-      <change beforePath="$PROJECT_DIR$/src/Triplet.java" afterPath="$PROJECT_DIR$/src/Triplet.java" />
+      <change beforePath="$PROJECT_DIR$/src/StopWatch.java" afterPath="$PROJECT_DIR$/src/StopWatch.java" />
       <change beforePath="$PROJECT_DIR$/src/UserInterface.java" afterPath="$PROJECT_DIR$/src/UserInterface.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -30,16 +28,13 @@
       <file leaf-file-name="UserInterface.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UserInterface.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="682">
-              <caret line="57" column="42" lean-forward="false" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
+            <state relative-caret-position="168">
+              <caret line="242" column="0" lean-forward="false" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc;n#init#0;n#UserInterface#0" expanded="false" />
                 <element signature="method#init#0;class#UserInterface#0" expanded="false" />
                 <element signature="method#addControls#0;class#UserInterface#0" expanded="false" />
                 <element signature="method#fillGrid#0;class#UserInterface#0" expanded="false" />
-                <element signature="n#!!doc;n#setupActionListeners#0;n#UserInterface#0" expanded="false" />
-                <element signature="method#setupActionListeners#0;class#UserInterface#0" expanded="false" />
-                <element signature="method#colorizeAll#0;class#UserInterface#0" expanded="false" />
                 <element signature="method#setEmptyTile#0;class#UserInterface#0" expanded="false" />
                 <element signature="method#colorizeEmptytile#0;class#UserInterface#0" expanded="false" />
                 <element signature="method#colorize#0;class#UserInterface#0" expanded="false" />
@@ -49,11 +44,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="StopWatch.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/StopWatch.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="19" column="43" lean-forward="false" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="23" column="8" lean-forward="false" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+            <state relative-caret-position="300">
+              <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -61,21 +66,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StopWatch.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/StopWatch.java">
+      <file leaf-file-name="GridWorker.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GridWorker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
-              <caret line="2" column="29" lean-forward="true" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+            <state relative-caret-position="66">
+              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Grid.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Grid.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Grid.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="55" column="33" lean-forward="false" selection-start-line="55" selection-start-column="20" selection-end-line="55" selection-end-column="33" />
+            <state relative-caret-position="4224">
+              <caret line="233" column="5" lean-forward="false" selection-start-line="233" selection-start-column="5" selection-end-line="233" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="class#Position#0;class#Grid#0" expanded="false" />
@@ -84,46 +89,16 @@
                 <element signature="method#toString#0;class#Position#0;class#Grid#0" expanded="false" />
                 <element signature="e#969#970#0" expanded="true" />
                 <element signature="e#1009#1010#0" expanded="true" />
-                <element signature="method#initProblem#0;class#Grid#0" expanded="false" />
-                <element signature="method#foundRogueTile#0;class#Grid#0" expanded="false" />
-                <element signature="e#3768#3769#0" expanded="true" />
-                <element signature="e#3799#3800#0" expanded="true" />
-                <element signature="method#divide#0;class#Grid#0" expanded="false" />
-                <element signature="n#!!doc;n#getSubGrids#0;n#Grid#0" expanded="false" />
-                <element signature="e#10097#10098#0" expanded="true" />
-                <element signature="e#10128#10129#0" expanded="true" />
-                <element signature="e#10170#10171#0" expanded="true" />
-                <element signature="e#10209#10210#0" expanded="true" />
-                <element signature="e#10272#10273#0" expanded="true" />
-                <element signature="e#10328#10329#0" expanded="true" />
-                <element signature="e#10361#10362#0" expanded="true" />
-                <element signature="e#10393#10394#0" expanded="true" />
-                <element signature="e#10440#10441#0" expanded="true" />
-                <element signature="e#10482#10483#0" expanded="true" />
-                <element signature="e#10530#10531#0" expanded="true" />
-                <element signature="e#10570#10571#0" expanded="true" />
-                <element signature="e#10611#10612#0" expanded="true" />
-                <element signature="e#10647#10648#0" expanded="true" />
-                <element signature="e#10706#10707#0" expanded="true" />
-                <element signature="e#10756#10757#0" expanded="true" />
-                <element signature="e#10803#10804#0" expanded="true" />
-                <element signature="e#10844#10845#0" expanded="true" />
-                <element signature="e#10914#10915#0" expanded="true" />
-                <element signature="e#10974#10975#0" expanded="true" />
+                <element signature="e#3701#3702#0" expanded="true" />
+                <element signature="e#3732#3733#0" expanded="true" />
+                <element signature="e#10024#10025#0" expanded="true" />
+                <element signature="e#10055#10056#0" expanded="true" />
+                <element signature="e#10088#10089#0" expanded="true" />
+                <element signature="e#10120#10121#0" expanded="true" />
                 <element signature="n#!!doc;n#inRange#0;n#Grid#0" expanded="false" />
-                <element signature="e#11075#11076#0" expanded="true" />
-                <element signature="e#11119#11120#0" expanded="true" />
+                <element signature="e#10221#10222#0" expanded="true" />
+                <element signature="e#10265#10266#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Triplet.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Triplet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -149,6 +124,7 @@
       <find>java.awt.Point[x=1,y=4], java.awt.Point[x=0,y=4], java.awt.Point[x=0,y=5]</find>
       <find>setEmptyTile</find>
       <find>[x=7,y=0]</find>
+      <find>piecePosition</find>
     </findStrings>
     <replaceStrings>
       <replace>this</replace>
@@ -168,10 +144,11 @@
         <option value="$PROJECT_DIR$/src/App.java" />
         <option value="$PROJECT_DIR$/src/Index.java" />
         <option value="$PROJECT_DIR$/src/Triplet.java" />
-        <option value="$PROJECT_DIR$/src/UserInterface.java" />
-        <option value="$PROJECT_DIR$/src/Grid.java" />
-        <option value="$PROJECT_DIR$/src/StopWatch.java" />
         <option value="$PROJECT_DIR$/src/Controller.java" />
+        <option value="$PROJECT_DIR$/src/UserInterface.java" />
+        <option value="$PROJECT_DIR$/src/StopWatch.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/idea64.exe.vmoptions" />
+        <option value="$PROJECT_DIR$/src/Grid.java" />
       </list>
     </option>
   </component>
@@ -187,7 +164,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-15" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
@@ -238,6 +215,11 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="findjar.last.used.dir" value="$PROJECT_DIR$" />
+    <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
+    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
+    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
+    <property name="GenerateAntBuildDialog.outputFileNameProperty" value="log320-lab2" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.importing" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -330,7 +312,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36865000" />
+    <option name="totallyTimeSpent" value="39726000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -342,7 +324,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -355,7 +337,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.62391305" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13752665" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -392,31 +374,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/UserInterface.java</url>
-          <line>242</line>
-          <properties />
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/UserInterface.java</url>
-          <line>246</line>
-          <properties />
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/UserInterface.java</url>
-          <line>286</line>
+          <line>274</line>
           <properties />
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Grid.java</url>
-          <line>85</line>
-          <properties />
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Grid.java</url>
-          <line>123</line>
+          <line>122</line>
           <properties />
           <option name="timeStamp" value="26" />
         </line-breakpoint>
@@ -425,6 +389,7 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
+        <watch expression="Grid.filledTiles" language="JAVA" />
         <watch expression="Grid.filledTiles" language="JAVA" />
       </configuration>
     </watches-manager>
@@ -439,61 +404,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ProblemParameters.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Grid.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="36" column="39" lean-forward="false" selection-start-line="36" selection-start-column="39" selection-end-line="36" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="class#Position#0;class#Grid#0" expanded="false" />
-            <element signature="e#258#259#0" expanded="true" />
-            <element signature="e#308#309#0" expanded="true" />
-            <element signature="method#toString#0;class#Position#0;class#Grid#0" expanded="false" />
-            <element signature="e#969#970#0" expanded="true" />
-            <element signature="e#1009#1010#0" expanded="true" />
-            <element signature="method#initProblem#0;class#Grid#0" expanded="false" />
-            <element signature="method#foundRogueTile#0;class#Grid#0" expanded="false" />
-            <element signature="e#3768#3769#0" expanded="true" />
-            <element signature="e#3799#3800#0" expanded="true" />
-            <element signature="method#divide#0;class#Grid#0" expanded="false" />
-            <element signature="n#!!doc;n#getSubGrids#0;n#Grid#0" expanded="false" />
-            <element signature="e#10097#10098#0" expanded="true" />
-            <element signature="e#10128#10129#0" expanded="true" />
-            <element signature="e#10170#10171#0" expanded="true" />
-            <element signature="e#10209#10210#0" expanded="true" />
-            <element signature="e#10272#10273#0" expanded="true" />
-            <element signature="e#10328#10329#0" expanded="true" />
-            <element signature="e#10361#10362#0" expanded="true" />
-            <element signature="e#10393#10394#0" expanded="true" />
-            <element signature="e#10440#10441#0" expanded="true" />
-            <element signature="e#10482#10483#0" expanded="true" />
-            <element signature="e#10530#10531#0" expanded="true" />
-            <element signature="e#10570#10571#0" expanded="true" />
-            <element signature="e#10611#10612#0" expanded="true" />
-            <element signature="e#10647#10648#0" expanded="true" />
-            <element signature="e#10706#10707#0" expanded="true" />
-            <element signature="e#10756#10757#0" expanded="true" />
-            <element signature="e#10803#10804#0" expanded="true" />
-            <element signature="e#10844#10845#0" expanded="true" />
-            <element signature="e#10914#10915#0" expanded="true" />
-            <element signature="e#10974#10975#0" expanded="true" />
-            <element signature="n#!!doc;n#inRange#0;n#Grid#0" expanded="false" />
-            <element signature="e#11075#11076#0" expanded="true" />
-            <element signature="e#11119#11120#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Triplet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
@@ -663,9 +573,6 @@
             <element signature="method#init#0;class#UserInterface#0" expanded="false" />
             <element signature="method#addControls#0;class#UserInterface#0" expanded="false" />
             <element signature="method#fillGrid#0;class#UserInterface#0" expanded="false" />
-            <element signature="n#!!doc;n#setupActionListeners#0;n#UserInterface#0" expanded="false" />
-            <element signature="method#setupActionListeners#0;class#UserInterface#0" expanded="false" />
-            <element signature="method#colorizeAll#0;class#UserInterface#0" expanded="false" />
             <element signature="method#setEmptyTile#0;class#UserInterface#0" expanded="false" />
             <element signature="method#colorizeEmptytile#0;class#UserInterface#0" expanded="false" />
             <element signature="method#colorize#0;class#UserInterface#0" expanded="false" />
@@ -696,35 +603,15 @@
             <element signature="method#toString#0;class#Position#0;class#Grid#0" expanded="false" />
             <element signature="e#969#970#0" expanded="true" />
             <element signature="e#1009#1010#0" expanded="true" />
-            <element signature="method#initProblem#0;class#Grid#0" expanded="false" />
-            <element signature="method#foundRogueTile#0;class#Grid#0" expanded="false" />
-            <element signature="e#3768#3769#0" expanded="true" />
-            <element signature="e#3799#3800#0" expanded="true" />
-            <element signature="method#divide#0;class#Grid#0" expanded="false" />
-            <element signature="n#!!doc;n#getSubGrids#0;n#Grid#0" expanded="false" />
-            <element signature="e#10097#10098#0" expanded="true" />
-            <element signature="e#10128#10129#0" expanded="true" />
-            <element signature="e#10170#10171#0" expanded="true" />
-            <element signature="e#10209#10210#0" expanded="true" />
-            <element signature="e#10272#10273#0" expanded="true" />
-            <element signature="e#10328#10329#0" expanded="true" />
-            <element signature="e#10361#10362#0" expanded="true" />
-            <element signature="e#10393#10394#0" expanded="true" />
-            <element signature="e#10440#10441#0" expanded="true" />
-            <element signature="e#10482#10483#0" expanded="true" />
-            <element signature="e#10530#10531#0" expanded="true" />
-            <element signature="e#10570#10571#0" expanded="true" />
-            <element signature="e#10611#10612#0" expanded="true" />
-            <element signature="e#10647#10648#0" expanded="true" />
-            <element signature="e#10706#10707#0" expanded="true" />
-            <element signature="e#10756#10757#0" expanded="true" />
-            <element signature="e#10803#10804#0" expanded="true" />
-            <element signature="e#10844#10845#0" expanded="true" />
-            <element signature="e#10914#10915#0" expanded="true" />
-            <element signature="e#10974#10975#0" expanded="true" />
+            <element signature="e#3701#3702#0" expanded="true" />
+            <element signature="e#3732#3733#0" expanded="true" />
+            <element signature="e#10024#10025#0" expanded="true" />
+            <element signature="e#10055#10056#0" expanded="true" />
+            <element signature="e#10088#10089#0" expanded="true" />
+            <element signature="e#10120#10121#0" expanded="true" />
             <element signature="n#!!doc;n#inRange#0;n#Grid#0" expanded="false" />
-            <element signature="e#11075#11076#0" expanded="true" />
-            <element signature="e#11119#11120#0" expanded="true" />
+            <element signature="e#10221#10222#0" expanded="true" />
+            <element signature="e#10265#10266#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -748,9 +635,6 @@
             <element signature="method#init#0;class#UserInterface#0" expanded="false" />
             <element signature="method#addControls#0;class#UserInterface#0" expanded="false" />
             <element signature="method#fillGrid#0;class#UserInterface#0" expanded="false" />
-            <element signature="n#!!doc;n#setupActionListeners#0;n#UserInterface#0" expanded="false" />
-            <element signature="method#setupActionListeners#0;class#UserInterface#0" expanded="false" />
-            <element signature="method#colorizeAll#0;class#UserInterface#0" expanded="false" />
             <element signature="method#setEmptyTile#0;class#UserInterface#0" expanded="false" />
             <element signature="method#colorizeEmptytile#0;class#UserInterface#0" expanded="false" />
             <element signature="method#colorize#0;class#UserInterface#0" expanded="false" />
@@ -781,35 +665,15 @@
             <element signature="method#toString#0;class#Position#0;class#Grid#0" expanded="false" />
             <element signature="e#969#970#0" expanded="true" />
             <element signature="e#1009#1010#0" expanded="true" />
-            <element signature="method#initProblem#0;class#Grid#0" expanded="false" />
-            <element signature="method#foundRogueTile#0;class#Grid#0" expanded="false" />
-            <element signature="e#3768#3769#0" expanded="true" />
-            <element signature="e#3799#3800#0" expanded="true" />
-            <element signature="method#divide#0;class#Grid#0" expanded="false" />
-            <element signature="n#!!doc;n#getSubGrids#0;n#Grid#0" expanded="false" />
-            <element signature="e#10097#10098#0" expanded="true" />
-            <element signature="e#10128#10129#0" expanded="true" />
-            <element signature="e#10170#10171#0" expanded="true" />
-            <element signature="e#10209#10210#0" expanded="true" />
-            <element signature="e#10272#10273#0" expanded="true" />
-            <element signature="e#10328#10329#0" expanded="true" />
-            <element signature="e#10361#10362#0" expanded="true" />
-            <element signature="e#10393#10394#0" expanded="true" />
-            <element signature="e#10440#10441#0" expanded="true" />
-            <element signature="e#10482#10483#0" expanded="true" />
-            <element signature="e#10530#10531#0" expanded="true" />
-            <element signature="e#10570#10571#0" expanded="true" />
-            <element signature="e#10611#10612#0" expanded="true" />
-            <element signature="e#10647#10648#0" expanded="true" />
-            <element signature="e#10706#10707#0" expanded="true" />
-            <element signature="e#10756#10757#0" expanded="true" />
-            <element signature="e#10803#10804#0" expanded="true" />
-            <element signature="e#10844#10845#0" expanded="true" />
-            <element signature="e#10914#10915#0" expanded="true" />
-            <element signature="e#10974#10975#0" expanded="true" />
+            <element signature="e#3701#3702#0" expanded="true" />
+            <element signature="e#3732#3733#0" expanded="true" />
+            <element signature="e#10024#10025#0" expanded="true" />
+            <element signature="e#10055#10056#0" expanded="true" />
+            <element signature="e#10088#10089#0" expanded="true" />
+            <element signature="e#10120#10121#0" expanded="true" />
             <element signature="n#!!doc;n#inRange#0;n#Grid#0" expanded="false" />
-            <element signature="e#11075#11076#0" expanded="true" />
-            <element signature="e#11119#11120#0" expanded="true" />
+            <element signature="e#10221#10222#0" expanded="true" />
+            <element signature="e#10265#10266#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -974,18 +838,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/GridWorker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StopWatch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="19" column="43" lean-forward="false" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/idea64.exe.vmoptions">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="8" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/UserInterface.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="682">
-          <caret line="57" column="42" lean-forward="false" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
+        <state relative-caret-position="168">
+          <caret line="242" column="0" lean-forward="false" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc;n#init#0;n#UserInterface#0" expanded="false" />
             <element signature="method#init#0;class#UserInterface#0" expanded="false" />
             <element signature="method#addControls#0;class#UserInterface#0" expanded="false" />
             <element signature="method#fillGrid#0;class#UserInterface#0" expanded="false" />
-            <element signature="n#!!doc;n#setupActionListeners#0;n#UserInterface#0" expanded="false" />
-            <element signature="method#setupActionListeners#0;class#UserInterface#0" expanded="false" />
-            <element signature="method#colorizeAll#0;class#UserInterface#0" expanded="false" />
             <element signature="method#setEmptyTile#0;class#UserInterface#0" expanded="false" />
             <element signature="method#colorizeEmptytile#0;class#UserInterface#0" expanded="false" />
             <element signature="method#colorize#0;class#UserInterface#0" expanded="false" />
@@ -994,18 +889,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/StopWatch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="29" lean-forward="true" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Grid.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="55" column="33" lean-forward="false" selection-start-line="55" selection-start-column="20" selection-end-line="55" selection-end-column="33" />
+        <state relative-caret-position="4224">
+          <caret line="233" column="5" lean-forward="false" selection-start-line="233" selection-start-column="5" selection-end-line="233" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="class#Position#0;class#Grid#0" expanded="false" />
@@ -1014,45 +901,15 @@
             <element signature="method#toString#0;class#Position#0;class#Grid#0" expanded="false" />
             <element signature="e#969#970#0" expanded="true" />
             <element signature="e#1009#1010#0" expanded="true" />
-            <element signature="method#initProblem#0;class#Grid#0" expanded="false" />
-            <element signature="method#foundRogueTile#0;class#Grid#0" expanded="false" />
-            <element signature="e#3768#3769#0" expanded="true" />
-            <element signature="e#3799#3800#0" expanded="true" />
-            <element signature="method#divide#0;class#Grid#0" expanded="false" />
-            <element signature="n#!!doc;n#getSubGrids#0;n#Grid#0" expanded="false" />
-            <element signature="e#10097#10098#0" expanded="true" />
-            <element signature="e#10128#10129#0" expanded="true" />
-            <element signature="e#10170#10171#0" expanded="true" />
-            <element signature="e#10209#10210#0" expanded="true" />
-            <element signature="e#10272#10273#0" expanded="true" />
-            <element signature="e#10328#10329#0" expanded="true" />
-            <element signature="e#10361#10362#0" expanded="true" />
-            <element signature="e#10393#10394#0" expanded="true" />
-            <element signature="e#10440#10441#0" expanded="true" />
-            <element signature="e#10482#10483#0" expanded="true" />
-            <element signature="e#10530#10531#0" expanded="true" />
-            <element signature="e#10570#10571#0" expanded="true" />
-            <element signature="e#10611#10612#0" expanded="true" />
-            <element signature="e#10647#10648#0" expanded="true" />
-            <element signature="e#10706#10707#0" expanded="true" />
-            <element signature="e#10756#10757#0" expanded="true" />
-            <element signature="e#10803#10804#0" expanded="true" />
-            <element signature="e#10844#10845#0" expanded="true" />
-            <element signature="e#10914#10915#0" expanded="true" />
-            <element signature="e#10974#10975#0" expanded="true" />
+            <element signature="e#3701#3702#0" expanded="true" />
+            <element signature="e#3732#3733#0" expanded="true" />
+            <element signature="e#10024#10025#0" expanded="true" />
+            <element signature="e#10055#10056#0" expanded="true" />
+            <element signature="e#10088#10089#0" expanded="true" />
+            <element signature="e#10120#10121#0" expanded="true" />
             <element signature="n#!!doc;n#inRange#0;n#Grid#0" expanded="false" />
-            <element signature="e#11075#11076#0" expanded="true" />
-            <element signature="e#11119#11120#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="23" column="8" lean-forward="false" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#10221#10222#0" expanded="true" />
+            <element signature="e#10265#10266#0" expanded="true" />
           </folding>
         </state>
       </provider>

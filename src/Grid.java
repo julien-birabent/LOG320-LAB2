@@ -53,14 +53,12 @@ public class Grid {
     private static int[][] filledTiles;
 
     private Grid[] subGrids;
-    private Triplet piecePosition;
     // La position absolue du de cette grille dans la grille complete donnée par le premier point de cette grille.
     private Point absolutePosition;
     private int gridDepth;
     private Position filledTilePosition;
 
     public Grid(Point absolutePosition, int gridDepth) {
-        this.subGrids = new Grid[4];
         this.absolutePosition = absolutePosition;
         this.gridDepth = gridDepth;
     }
@@ -72,11 +70,12 @@ public class Grid {
 
         int arrayLength = (int) Math.pow(2, completeGrid.getGridDepth());
         Grid.filledTiles = new int[arrayLength][arrayLength];
-        for (int i = 0; i < Grid.filledTiles.length; i++) {
+
+        /*for (int i = 0; i < Grid.filledTiles.length; i++) {
             for (int j = 0; j < Grid.filledTiles.length; j++) {
                 Grid.filledTiles[i][j] = BLANK;
             }
-        }
+        }*/
         Grid.filledTiles[x][y] = FILLED;
 
     }
@@ -131,6 +130,7 @@ public class Grid {
         downLeftPosition.setLocation(absolutePosition.getX() + offset, absolutePosition.getY());
 
         if(gridDepth>1){
+            this.subGrids = new Grid[4];
             Grid upLeftSubGrid = new Grid(absolutePosition, subGridDepth);
             Grid upRightSubGrid = new Grid(upRightPosition, subGridDepth);
             Grid downLeftSubGrid = new Grid(downLeftPosition, subGridDepth);
@@ -220,13 +220,12 @@ public class Grid {
                         break;
             }
         }
-        System.out.println("Piece insere a : " + first.toString() +", " + second.toString() +", " +third.toString());
+        //System.out.println("Piece insere a : " + first.toString() +", " + second.toString() +", " +third.toString());
         Grid.filledTiles[first.x][first.y] = FILLED;
         Grid.filledTiles[second.x][second.y] = FILLED;
         Grid.filledTiles[third.x][third.y] = FILLED;
-        this.piecePosition = new Triplet(first, second, third);
 
-        return this.piecePosition;
+        return new Triplet(first, second, third);
     }
 
     //region Accessors
@@ -234,40 +233,8 @@ public class Grid {
         return subGrids;
     }
 
-    public Point getAbsolutePosition() {
-        return absolutePosition;
-    }
-
-    public void setAbsolutePosition(Point absolutePosition) {
-        this.absolutePosition = absolutePosition;
-    }
-
     public int getGridDepth() {
         return gridDepth;
-    }
-
-    public void setGridDepth(int gridDepth) {
-        this.gridDepth = gridDepth;
-    }
-
-    public void setSubGrids(Grid[] subGrids) {
-        this.subGrids = subGrids;
-    }
-
-    public Triplet getPiecePosition() {
-        return piecePosition;
-    }
-
-    public void setPiecePosition(Triplet piecePosition) {
-        this.piecePosition = piecePosition;
-    }
-
-    public Position getFilledTilePosition() {
-        return filledTilePosition;
-    }
-
-    public void setFilledTilePosition(Position filledTilePosition) {
-        this.filledTilePosition = filledTilePosition;
     }
 
     //endregion

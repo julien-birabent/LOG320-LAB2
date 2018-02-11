@@ -28,6 +28,7 @@ public class Controller {
         divideAndConquer(completeGrid);
         //Grid.printArrayTiles();
 
+        System.out.println("Profondeur de la grille : " + initialGridDepth);
         System.out.println("Execution time : " + stopWatch.elapsedTime() + "sec.");
         return tripletList;
     }
