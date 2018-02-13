@@ -240,11 +240,15 @@ public class UserInterface implements Observer{
                 ArrayList<Triplet> results = mController.resolveProblem();
                 // display results
                 for (Triplet t : results) {
-                    System.out.println("Triplet at: " + t.getFirst() + " " + t.getSecond() + " " + t.getThird());
+                    //System.out.println("Triplet at: " + t.getFirst() + " " + t.getSecond() + " " + t.getThird());
                     if(colorIndex == colorArray.length) colorIndex = 0;
-                    getNodeByRowColumnIndex(t.getFirst().y, t.getFirst().x,gridPane).setStyle("-fx-background-color: "+ colorArray[colorIndex]);
-                    getNodeByRowColumnIndex(t.getSecond().y, t.getSecond().x,gridPane).setStyle("-fx-background-color: "+ colorArray[colorIndex]);
-                    getNodeByRowColumnIndex(t.getThird().y, t.getThird().x,gridPane).setStyle("-fx-background-color: "+ colorArray[colorIndex]);
+                    if (t != null && drawGrid.isSelected()) {
+//                        System.out.println("color array index: " + colorIndex);
+//                        System.out.println("node: " + getNodeByRowColumnIndex(t.getFirst().y, t.getFirst().x,gridPane));
+                        getNodeByRowColumnIndex(t.getFirst().y, t.getFirst().x,gridPane).setStyle("-fx-background-color: "+ colorArray[colorIndex]);
+                        getNodeByRowColumnIndex(t.getSecond().y, t.getSecond().x,gridPane).setStyle("-fx-background-color: "+ colorArray[colorIndex]);
+                        getNodeByRowColumnIndex(t.getThird().y, t.getThird().x,gridPane).setStyle("-fx-background-color: "+ colorArray[colorIndex]);
+                    }
 
                     colorIndex++;
                 }

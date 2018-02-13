@@ -21,17 +21,35 @@ public class Controller {
         Point emptyTile = ProblemParameters.getInstance().getEmptyTilePosition();
         int gridSize = (int)Math.pow(2,n);
         this.grid = new Point[gridSize][gridSize];
-        for (int i = 0; i < gridSize; i++) {
-            for (int j = 0; j < gridSize; j++) {
-                this.grid[j][i] = new Point(j,i);
-            }
-        }
+
         // start the recursion
         tripletList = new ArrayList<Triplet>();
+
+        StopWatch stopWatch = new StopWatch();
         divideAndConquer(0, gridSize-1,0, gridSize-1, emptyTile);
+        System.out.println("Profondeur de la grille : " + n);
+        System.out.println("Execution time : " + stopWatch.elapsedTime() + "sec.");
 
 
         return this.tripletList;
+    }
+
+    public int findRogueTile(int xStart, int xEnd, int yStart, int yEnd, Point emptyTile) {
+        int midx = (xEnd - xStart + 1) / 2;
+        int midy = (yEnd - yStart + 1) / 2;
+        if( emptyTile.x < midx && emptyTile.y < midy) return 0;
+        else if( emptyTile.x >= midx && emptyTile.y < midy) return 1;
+        else if( emptyTile.x < midx && emptyTile.y >= midy) return 2;
+        else if( emptyTile.x >= midx && emptyTile.y >= midy) return 3;
+        return -1;
+    }
+
+    public int findEmptyTileQuartile(int xStart, int xEnd, int yStart, int yEnd, Point emptyTile) {
+        if(emptyTile.x == xStart && emptyTile.y == yStart) return 0;
+        else if (emptyTile.x == xEnd && emptyTile.y == yEnd) return 3;
+        else if(emptyTile.x == xStart && emptyTile.y == yEnd) return 2;
+        else if(emptyTile.x == xEnd && emptyTile.y == yStart) return 1;
+        else return findRogueTile(xStart, xEnd, yStart, yEnd, emptyTile);
     }
 
     public void divideAndConquer(int xStart, int xEnd, int yStart, int yEnd, Point emptyTile) {
@@ -40,36 +58,16 @@ public class Controller {
         // split in 4 smaller grids
         int halves = size / 2;
         int emptyTileQuartile = -1;
-
-        Point[][] topLeft = new Point[halves][halves];
-        Point[][] topRight = new Point[halves][halves];
-        Point[][] bottomLeft = new Point[halves][halves];
-        Point[][] bottomRight = new Point[halves][halves];
-
-        for (int i = 0; i < halves; i++) {
-            for (int j = 0; j < halves; j++) {
-                topLeft[j][i] = grid[xStart + j][yStart + i];
-                topRight[j][i] = grid[xStart + j + halves][yStart + i];
-                bottomLeft[j][i] = grid[xStart + j][yStart + i + halves];
-                bottomRight[j][i] = grid[xStart + j + halves][yStart + i + halves];
-
-                // find which quarter contains the empty tile
-                if(emptyTile.equals(topLeft[j][i])) emptyTileQuartile = 0;
-                else if(emptyTile.equals(topRight[j][i])) emptyTileQuartile = 1;
-                else if(emptyTile.equals(bottomLeft[j][i])) emptyTileQuartile = 2;
-                else if(emptyTile.equals(bottomRight[j][i])) emptyTileQuartile = 3;
-
-            }
-        }
+        emptyTileQuartile = findEmptyTileQuartile(xStart, xEnd, yStart, yEnd, emptyTile);
 
         // place triplet to have one occupied tile on every quarter
-        System.out.println("empty tile " + emptyTile.toString() + "is in "+ emptyTileQuartile+"th quarter");
+        //System.out.println("empty tile " + emptyTile.toString() + "is in "+ emptyTileQuartile+"th quarter");
         int borderLimit = halves - 1;
 
-        Point quarter0empty = topLeft[borderLimit][borderLimit];
-        Point quarter1empty = topRight[0][borderLimit];
-        Point quarter2empty = bottomLeft[borderLimit][0];
-        Point quarter3empty = bottomRight[0][0];
+        Point quarter0empty = new Point(xStart+borderLimit, yStart+borderLimit);
+        Point quarter1empty = new Point(xStart+borderLimit+1, yStart+borderLimit);
+        Point quarter2empty = new Point(xStart+borderLimit, yStart+borderLimit+1);
+        Point quarter3empty = new Point(xStart+borderLimit+1, yStart+borderLimit+1);
 
         if (emptyTileQuartile == -1) {
             System.out.println("wtf is happening");

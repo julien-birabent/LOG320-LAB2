@@ -10,7 +10,7 @@ public class Triplet<A> {
         this.first = first;
         this.second = second;
         this.third = third;
-        System.out.println("new Triplet at: " + first + " " + second + " " + third);
+        //System.out.println("new Triplet at: " + first + " " + second + " " + third);
 
     }
 
